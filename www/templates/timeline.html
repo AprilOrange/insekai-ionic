@@ -1,0 +1,24 @@
+<ion-view view-title="时间轴 <a href='#/app/new-status' class='compose'><i class='ion-compose'></i></a>">
+  <ion-content>
+    <ion-refresher
+      pulling-text="下拉刷新"
+      on-refresh="refreshTimeline()">
+    </ion-refresher>
+    <ion-list class="timeline">
+      <ion-item ng-repeat="t in timeline" href="#/app/timeline/{{t.tokio_id}}">
+        <a class="t-avatar">
+          <img src="{{t.avatar}}">
+        </a>
+        <div class="t-main">
+          <div class="t-header">
+            <a href="#/app/user/{{t.username}}">{{t.nickname}}</a> 
+            <span class="t-timeago snow">{{t.timeago}}</span>
+          </div>
+          <div class="t-content" ng-bind-html="t.content_rendered"></div>
+        </div>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll on-infinite="loadMore()">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>
